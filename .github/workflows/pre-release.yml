@@ -44,7 +44,7 @@ jobs:
           APPLE_TEAM_ID:  ${{ secrets.APPLE_TEAM_ID }}
         run: xcodebuild -workspace CodeEdit.xcworkspace -scheme CodeEdit -configuration Release -derivedDataPath "$RUNNER_TEMP/DerivedData" -archivePath "$RUNNER_TEMP/CodeEdit.xcarchive" -skipPackagePluginValidation DEVELOPMENT_TEAM=$APPLE_TEAM_ID archive
       - name: Sign CodeEdit
-        run: codesign --sign "Developer ID Application:\ Johnathan Baird (ACF4P89MYN)" --prefix austincondiff.CodeEdit --timestamp "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app"
+        run: codesign --sign "Developer ID Application: Johnathan Baird (ACF4P89MYN)" --prefix austincondiff.CodeEdit --timestamp "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app"
       - name: Create CodeEdit.dmg
         run: |
           REV=$(git rev-parse --short HEAD)
