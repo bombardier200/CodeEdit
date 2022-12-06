@@ -22,7 +22,9 @@ jobs:
           # https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
           DEV_CERT_B64: ${{ secrets.DEV_CERT_B64 }}
           DEV_CERT_PWD: ${{ secrets.DEV_CERT_PWD }}
-          PROVISION_PROFILE_B64: ${{ secrets.PROVISION_PROFILE_B64 }}
+          MAC_CERT_B64: ${{ secrets.MAC_CERT_B64 }}
+          MAC_CERT_PWD: ${{ secrets.MAC_CERT_PWD }}
+          # PROVISION_PROFILE_B64: ${{ secrets.PROVISION_PROFILE_B64 }}
           KEYCHAIN_TIMEOUT: 21600
         run: |
           DEV_CERT_P12="$RUNNER_TEMP/dev_cert.p12"
