@@ -98,34 +98,14 @@ jobs:
             --notarize "CodeEdit" \
             "$RUNNER_TEMP/CodeEdit-$REV.dmg" \
             "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/"
-        
-      - name: Update Sparkle appcast
-        env:
-          # SPARKLE_KEY: Sparkle EdDSA key exported from `generate_keys -x` as plain text
-          # SPARKLE_CHANNEL: Seperate dev builds from default channel, to be specified in [SPUUpdaterDelegate allowedChannelsForUpdater:]
-          # SPARKLE_DL_PREFIX: Prefix for the URL from where updates will be downloaded
-          # SPARKLE_LINK: CodeEdit Website
-          SPARKLE_KEY: ${{ secrets.SPARKLE_KEY }}
-          SPARKLE_CHANNEL: dev
-          SPARKLE_DL_PREFIX: "https://github.com/CodeEditApp/CodeEdit/releases/download/latest"
-          SPARKLE_LINK: "https://github.com/CodeEditApp/CodeEdit"
-        run: |
-          SPARKLE_BIN="$RUNNER_TEMP/DerivedData/SourcePackages/artifacts/sparkle/bin"
-          SPARKLE_ARCHIVE="$RUNNER_TEMP/Sparkle_Archive"
-          echo -n "$SPARKLE_KEY" | tee "$RUNNER_TEMP/sparkle_key"
-          mkdir "$SPARKLE_ARCHIVE"
-          cp "$RUNNER_TEMP/CodeEdit-$REV.dmg" "$SPARKLE_ARCHIVE"
-          SPARKLE_SIG=$("$SPARKLE_BIN/sign_update" --ed-key-file "$RUNNER_TEMP/sparkle_key" "$SPARKLE_ARCHIVE/CodeEdit-$REV.dmg" | cut -d\" -f2)
-          "$SPARKLE_BIN/generate_appcast" --ed-key-file "$RUNNER_TEMP/sparkle_key" --download-url-prefix "$SPARKLE_DL_PREFIX" --link "$SPARKLE_LINK" --channel "$SPARKLE_CHANNEL" --maximum-deltas 0 "$SPARKLE_ARCHIVE"
-          brew install xmlstarlet
-          xmlstarlet ed -O --inplace --insert "/rss/channel/item/enclosure" --type attr -n "sparkle:edSignature" -v "$SPARKLE_SIG" "$SPARKLE_ARCHIVE/appcast.xml"
       - name: Publish Pre-release
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: "CodeEdit-${{ env.REV }}"
           files: |
-            "${{ RUNNER.TEMP }}/Sparkle_Archive/CodeEdit-${{ env.REV }}.dmg"
-            "${{ RUNNER.TEMP }}/Sparkle_Archive/appcast.xml"
+            "$RUNNER_TEMP/CodeEdit-$REV.dmg"
+            #"${{ RUNNER.TEMP }}/Sparkle_Archive/CodeEdit-${{ env.REV }}.dmg"
+            #"${{ RUNNER.TEMP }}/Sparkle_Archive/appcast.xml"
           automatic_release_tag: "latest"
           prerelease: true
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
