@@ -56,7 +56,7 @@ jobs:
         run: |
           REV=$(git rev-parse --short HEAD)
           echo "REV=$REV" >> $GITHUB_ENV
-          codesign --sign "$CODESIGN_SIGN" --verbose --prefix austincondiff.CodeEdit. --force --deep --timestamp "$RUNNER_TEMP/CodeEdit-$REV.dmg"
+          codesign --sign "$CODESIGN_SIGN" --verbose --vvv --strict --prefix austincondiff.CodeEdit. --force --deep --timestamp "$RUNNER_TEMP/CodeEdit-$REV.dmg"
       - name: Notarize CodeEdit.dmg
         env:
           # APPLE_ID: Developer Apple ID
