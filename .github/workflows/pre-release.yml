@@ -50,13 +50,16 @@ jobs:
           #mkdir "$RUNNER_TEMP/CodeEdit-$REV"
           #cp -r "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app" "$RUNNER_TEMP/CodeEdit-$REV"
           #hdiutil create -srcfolder "$RUNNER_TEMP/CodeEdit-$REV" -volname CodeEdit -format ULMO "$RUNNER_TEMP/CodeEdit-$REV.dmg"
-      #- name: Sign CodeEdit
-        #env:
-          #CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
+      - name: Sign CodeEdit
+        env:
+          CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
+        run: |
+          REV=$(git rev-parse --short HEAD)
+          echo "REV=$REV" >> $GITHUB_ENV
+          codesign --sign "$CODESIGN_SIGN" -vvv --verbose --strict --prefix austincondiff.CodeEdit. --force --deep --timestamp "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app"
+      #- name: Zip CodeEdit
         #run: |
-          #REV=$(git rev-parse --short HEAD)
-          #echo "REV=$REV" >> $GITHUB_ENV
-          #codesign --sign "$CODESIGN_SIGN" -vvv --verbose --strict --prefix austincondiff.CodeEdit. --force --deep --timestamp "$RUNNER_TEMP/CodeEdit-$REV.dmg"
+          #zip -r codeedit.zip codeedit-cli
       #- name: Notarize CodeEdit.dmg
         #env:
           # APPLE_ID: Developer Apple ID
