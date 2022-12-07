@@ -46,7 +46,9 @@ jobs:
       - name: Sign CodeEdit
         env:
           CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
-        run: codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --timestamp "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app"
+        run: |
+          security find-identity -p basic -v
+          codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --timestamp "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app"
       - name: Create CodeEdit.dmg
         run: |
           REV=$(git rev-parse --short HEAD)
