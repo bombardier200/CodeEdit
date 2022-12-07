@@ -103,7 +103,7 @@ jobs:
         with:
           title: "CodeEdit-${{ env.REV }}"
           files: |
-            "${{ RUNNER.TEMP }}/CodeEdit-${{ env.REV }}.dmg"
+            ${{ RUNNER.TEMP }}/CodeEdit-${{ env.REV }}.dmg
           automatic_release_tag: "latest"
           prerelease: true
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
