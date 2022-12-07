@@ -43,13 +43,6 @@ jobs:
         env:
           APPLE_TEAM_ID:  ${{ secrets.APPLE_TEAM_ID }}
         run: xcodebuild -workspace CodeEdit.xcworkspace -scheme CodeEdit -configuration Release -derivedDataPath "$RUNNER_TEMP/DerivedData" -archivePath "$RUNNER_TEMP/CodeEdit.xcarchive" -skipPackagePluginValidation DEVELOPMENT_TEAM=$APPLE_TEAM_ID archive
-      #- name: Create CodeEdit.dmg
-        #run: |
-          #REV=$(git rev-parse --short HEAD)
-          #echo "REV=$REV" >> $GITHUB_ENV
-          #mkdir "$RUNNER_TEMP/CodeEdit-$REV"
-          #cp -r "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app" "$RUNNER_TEMP/CodeEdit-$REV"
-          #hdiutil create -srcfolder "$RUNNER_TEMP/CodeEdit-$REV" -volname CodeEdit -format ULMO "$RUNNER_TEMP/CodeEdit-$REV.dmg"
       - name: Sign CodeEdit
         env:
           CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
@@ -57,6 +50,13 @@ jobs:
           REV=$(git rev-parse --short HEAD)
           echo "REV=$REV" >> $GITHUB_ENV
           codesign --sign "$CODESIGN_SIGN" -vvv --verbose --strict --prefix austincondiff.CodeEdit. --force --deep --timestamp "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app"
+      #- name: Create CodeEdit.dmg
+        #run: |
+          #REV=$(git rev-parse --short HEAD)
+          #echo "REV=$REV" >> $GITHUB_ENV
+          #mkdir "$RUNNER_TEMP/CodeEdit-$REV"
+          #cp -r "$RUNNER_TEMP/CodeEdit.xcarchive/Products/Applications/CodeEdit.app" "$RUNNER_TEMP/CodeEdit-$REV"
+          #hdiutil create -srcfolder "$RUNNER_TEMP/CodeEdit-$REV" -volname CodeEdit -format ULMO "$RUNNER_TEMP/CodeEdit-$REV.dmg"
       #- name: Zip CodeEdit
         #run: |
           #zip -r codeedit.zip codeedit-cli
