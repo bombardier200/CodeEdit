@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftTerm
 
 struct StatusBarDrawer: View {
     @EnvironmentObject
@@ -20,7 +21,11 @@ struct StatusBarDrawer: View {
     var body: some View {
         if let url = workspace.workspaceClient?.folderURL() {
             VStack(spacing: 0) {
-                TerminalEmulatorView(url: url)
+                SplitView(axis: .horizontal) {
+                    ForEach(workspace.terminalArray, id: \.id) {terminal in
+                        TerminalEmulatorView(model: terminal)
+                    }
+                }
                 HStack(alignment: .center, spacing: 10) {
                     FilterTextField(title: "Filter", text: $searchText)
                         .frame(maxWidth: 300)

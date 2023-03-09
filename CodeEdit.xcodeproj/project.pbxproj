@@ -334,6 +334,7 @@
 		6CBD1BC62978DE53006639D5 /* Font+Caption3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBD1BC52978DE53006639D5 /* Font+Caption3.swift */; };
 		6CC9E4B229B5669900C97388 /* Environment+ActiveTabGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC9E4B129B5669900C97388 /* Environment+ActiveTabGroup.swift */; };
 		6CDA84AD284C1BA000C1CC3A /* TabBarContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */; };
+		8B98DF3029B99AB200ABCC75 /* TerminalEmulatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98DF2F29B99AB200ABCC75 /* TerminalEmulatorViewModel.swift */; };
 		B60BE8BD297A167600841125 /* AcknowledgementRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60BE8BC297A167600841125 /* AcknowledgementRowView.swift */; };
 		B62617282964924E00E866AB /* CodeEditKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2801BB89290D5A8E00EBF552 /* CodeEditKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
@@ -731,6 +732,7 @@
 		6CBD1BC52978DE53006639D5 /* Font+Caption3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Caption3.swift"; sourceTree = "<group>"; };
 		6CC9E4B129B5669900C97388 /* Environment+ActiveTabGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+ActiveTabGroup.swift"; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
+		8B98DF2F29B99AB200ABCC75 /* TerminalEmulatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalEmulatorViewModel.swift; sourceTree = "<group>"; };
 		B60BE8BC297A167600841125 /* AcknowledgementRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementRowView.swift; sourceTree = "<group>"; };
 		B658FB2C27DA9E0F00EA4DBD /* CodeEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -1447,6 +1449,7 @@
 			children = (
 				58798280292ED0FB0085B254 /* TerminalEmulatorView.swift */,
 				58798281292ED0FB0085B254 /* TerminalEmulatorView+Coordinator.swift */,
+				8B98DF2F29B99AB200ABCC75 /* TerminalEmulatorViewModel.swift */,
 			);
 			path = TerminalEmulator;
 			sourceTree = "<group>";
@@ -2659,6 +2662,7 @@
 				6C48D8F72972E5F300D6D205 /* WindowObserver.swift in Sources */,
 				587B9E6B29301D8F00AC7927 /* GitLabAvatarURL.swift in Sources */,
 				58798262292EC4080085B254 /* PluginRelease.swift in Sources */,
+				8B98DF3029B99AB200ABCC75 /* TerminalEmulatorViewModel.swift in Sources */,
 				58F2EB10292FB2B0004A9BDE /* PreferencesColorPicker.swift in Sources */,
 				58798233292E30B90085B254 /* FeedbackToolbar.swift in Sources */,
 				587B9E6829301D8F00AC7927 /* GitLabAccountModel.swift in Sources */,

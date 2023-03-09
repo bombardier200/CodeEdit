@@ -20,6 +20,8 @@ import CodeEditKit
 
     @Published var fileItems: [WorkspaceClient.FileItem] = []
 
+    @Published var terminalArray: [TerminalEmulatorViewModel] = [TerminalEmulatorViewModel(url:URL(string:"~/Desktop")!)]
+
     var tabManager = TabManager()
 
     var workspaceState: [String: Any] {
