@@ -18,6 +18,7 @@ struct StatusBarSplitTerminalButton: View {
         Button {
             var combo = "~/Documents" + String(testing)
             workspace.terminalArray.append(TerminalEmulatorViewModel(url:URL(string:combo)!))
+            testing += 1
         } label: {
             Image(systemName: "square.split.2x1")
                 .foregroundColor(.secondary)
